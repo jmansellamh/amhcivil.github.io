@@ -129,27 +129,25 @@
   .cap-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 440px;
+    height: 380px;
   }
   .cap-inner.flip { direction: rtl; }
   .cap-inner.flip > * { direction: ltr; }
 
   .cap-photos {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
     overflow: hidden;
+    position: relative;
   }
-  .cap-photos.single { grid-template-rows: 1fr; }
   .cap-photos img {
     width: 100%; height: 100%;
     object-fit: cover; display: block;
     transition: transform 0.5s ease;
   }
-  .cap-photos img:hover { transform: scale(1.03); }
-  .cap-photos .photo-divider { border-top: 2px solid var(--border); }
+  .cap-photos img:hover { transform: scale(1.04); }
+  .cap-photos img.secondary { display: none; }
 
   .cap-text {
-    padding: 52px 56px;
+    padding: 40px 48px;
     display: flex; flex-direction: column;
     justify-content: center;
     background: var(--surface);
@@ -203,10 +201,9 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    .cap-inner, .cap-inner.flip { grid-template-columns: 1fr; direction: ltr; }
+    .cap-inner, .cap-inner.flip { grid-template-columns: 1fr; direction: ltr; height: auto; }
     .cap-inner.flip > * { direction: ltr; }
-    .cap-photos { grid-template-rows: 260px; }
-    .cap-photos img:last-child { display: none; }
+    .cap-photos { height: 240px; }
     .cap-text { padding: 36px 28px; border-left: none; border-top: 3px solid var(--red); }
     .cap-inner.flip .cap-text { border-right: none; border-top: 3px solid var(--red); }
     .value-props { grid-template-columns: 1fr; }
@@ -275,11 +272,7 @@
 <!-- CAPABILITY 1: CONCRETE STRUCTURES -->
 <section class="cap-section" id="concrete">
   <div class="cap-inner">
-    <div class="cap-photos">
-      <img src="images/cap_concrete2.jpg" alt="Concrete pour tram street works">
-      <div class="photo-divider"></div>
-      <img src="images/cap_concrete1.jpg" alt="Bridge deck reinforcement steel fixing">
-    </div>
+    <div class="cap-photos"><img src="images/cap_concrete2.jpg" alt="Concrete pour tram street works"></div>
     <div class="cap-text">
       <p class="cap-number">01</p>
       <h2 class="cap-title">Concrete Structures</h2>
@@ -298,11 +291,7 @@
 <!-- CAPABILITY 2: PAVEMENTS -->
 <section class="cap-section" id="pavements">
   <div class="cap-inner flip">
-    <div class="cap-photos">
-      <img src="images/cap_pavements1.jpg" alt="Fresh asphalt road with kerb and channel">
-      <div class="photo-divider"></div>
-      <img src="images/cap_pavements2.jpg" alt="Night asphalt paving works">
-    </div>
+    <div class="cap-photos"><img src="images/cap_pavements1.jpg" alt="Fresh asphalt road with kerb and channel"></div>
     <div class="cap-text">
       <p class="cap-number">02</p>
       <h2 class="cap-title">Pavements</h2>
@@ -322,11 +311,7 @@
 <!-- CAPABILITY 3: BUILDINGS & PROCESS -->
 <section class="cap-section" id="buildings">
   <div class="cap-inner">
-    <div class="cap-photos">
-      <img src="images/cap_buildings2.jpg" alt="Brownfield industrial building works">
-      <div class="photo-divider"></div>
-      <img src="images/cap_buildings1.jpg" alt="Food processing facility interior works">
-    </div>
+    <div class="cap-photos"><img src="images/cap_buildings2.jpg" alt="Brownfield industrial building works"></div>
     <div class="cap-text">
       <p class="cap-number">03</p>
       <h2 class="cap-title">Buildings &amp; Process Infrastructure</h2>
@@ -345,11 +330,7 @@
 <!-- CAPABILITY 4: STORMWATER & UTILITIES -->
 <section class="cap-section" id="utilities">
   <div class="cap-inner flip">
-    <div class="cap-photos">
-      <img src="images/cap_utilities2.jpg" alt="Conduit installation in trench">
-      <div class="photo-divider"></div>
-      <img src="images/cap_utilities1.jpg" alt="Creek crossing culvert installation">
-    </div>
+    <div class="cap-photos"><img src="images/cap_utilities2.jpg" alt="Conduit installation in trench"></div>
     <div class="cap-text">
       <p class="cap-number">04</p>
       <h2 class="cap-title">Stormwater &amp; Utilities</h2>
@@ -368,11 +349,7 @@
 <!-- CAPABILITY 5: REGIONAL -->
 <section class="cap-section" id="regional">
   <div class="cap-inner">
-    <div class="cap-photos">
-      <img src="images/cap_regional1.jpg" alt="Regional road works excavator and dump truck">
-      <div class="photo-divider"></div>
-      <img src="images/cap_regional2.jpg" alt="Remote civil works near power transmission towers">
-    </div>
+    <div class="cap-photos"><img src="images/cap_regional1.jpg" alt="Regional road works excavator and dump truck"></div>
     <div class="cap-text">
       <p class="cap-number">05</p>
       <h2 class="cap-title">Regional &amp; Remote Civil</h2>
