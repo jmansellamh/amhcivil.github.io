@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capability | AMH Civil</title>
+<meta name="description" content="AMH Civil delivers concrete structures, pavements, buildings, stormwater and utilities, and regional civil projects across Victoria.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500&display=swap');
+
+  :root {
+    --bg:      #0f1117;
+    --surface: #181c27;
+    --border:  #252b3b;
+    --blue:    #1a5eb8;
+    --blue-lt: #2d7dd2;
+    --red:     #d63031;
+    --text:    #e2e8f0;
+    --muted:   #64748b;
+    --light:   #94a3b8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); }
+
+  /* ── NAV ── */
+  #main-nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 48px;
+    background: rgba(10,14,26,0.97);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo img { height: 40px; width: auto; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a.active { color: #fff; border-bottom: 2px solid var(--red); padding-bottom: 2px; }
+  .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    position: relative;
+    height: 420px;
+    overflow: hidden;
+  }
+  .page-hero img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 40%;
+    display: block;
+  }
+  .page-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(10,14,26,0.85) 0%, rgba(10,14,26,0.4) 100%);
+  }
+  .page-hero-content {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 0 64px;
+  }
+  .page-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 12px;
+  }
+  .page-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.02em; line-height: 1;
+    color: #fff; margin-bottom: 16px;
+  }
+  .page-intro {
+    font-size: 1rem; font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    max-width: 520px; line-height: 1.7;
+  }
+
+  /* ── VALUE PROPS ── */
+  .value-props {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+  .vp-item {
+    padding: 40px 40px;
+    border-right: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .vp-item:last-child { border-right: none; }
+  .vp-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 10px;
+  }
+  .vp-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    color: #fff; margin-bottom: 10px;
+  }
+  .vp-body {
+    font-size: 0.87rem; line-height: 1.75;
+    color: var(--light);
+  }
+
+  /* ── CAPABILITY SECTIONS ── */
+  .cap-section {
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Alternating: text-left / text-right */
+  .cap-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 440px;
+  }
+  .cap-inner.flip { direction: rtl; }
+  .cap-inner.flip > * { direction: ltr; }
+
+  .cap-photos {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    overflow: hidden;
+  }
+  .cap-photos.single { grid-template-rows: 1fr; }
+  .cap-photos img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .cap-photos img:hover { transform: scale(1.03); }
+  .cap-photos .photo-divider { border-top: 2px solid var(--border); }
+
+  .cap-text {
+    padding: 52px 56px;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    background: var(--surface);
+    border-left: 3px solid var(--red);
+  }
+  .cap-inner.flip .cap-text {
+    border-left: none;
+    border-right: 3px solid var(--red);
+  }
+  .cap-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 10px;
+  }
+  .cap-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.03em;
+    color: #fff; line-height: 1.05; margin-bottom: 18px;
+  }
+  .cap-body {
+    font-size: 0.9rem; line-height: 1.8;
+    color: var(--light); margin-bottom: 24px;
+  }
+  .cap-points {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .cap-points li {
+    font-size: 0.85rem; color: var(--light);
+    padding-left: 16px; position: relative; line-height: 1.5;
+  }
+  .cap-points li::before {
+    content: '';
+    position: absolute; left: 0; top: 9px;
+    width: 6px; height: 2px;
+    background: var(--red);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080a10;
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  footer img { height: 28px; width: auto; opacity: 0.6; }
+  footer p { font-size: 0.75rem; color: var(--muted); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .cap-inner, .cap-inner.flip { grid-template-columns: 1fr; direction: ltr; }
+    .cap-inner.flip > * { direction: ltr; }
+    .cap-photos { grid-template-rows: 260px; }
+    .cap-photos img:last-child { display: none; }
+    .cap-text { padding: 36px 28px; border-left: none; border-top: 3px solid var(--red); }
+    .cap-inner.flip .cap-text { border-right: none; border-top: 3px solid var(--red); }
+    .value-props { grid-template-columns: 1fr; }
+    .vp-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .page-hero { height: 300px; }
+    .page-hero-content { padding: 0 24px; }
+    #main-nav { padding: 14px 20px; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; right: 0; background: rgba(10,14,26,0.98); padding: 20px 24px; gap: 20px; }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: flex; }
+    footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 520px) {
+    .page-title { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="home.html" class="nav-logo">
+    <img src="images/logo.png" alt="AMH Civil">
+  </a>
+  <div class="nav-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="capability.html" class="active">Capability</a></li>
+    <li><a href="index.html">Projects</a></li>
+    <li><a href="home.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <img src="images/cap_hero.jpg" alt="AMH Civil intersection upgrade aerial">
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <p class="page-eyebrow">What We Deliver</p>
+    <h1 class="page-title">Capability</h1>
+    <p class="page-intro">A directly employed, engineering-led team with the systems, plant, and experience to manage complex civil works from programme through to handover.</p>
+  </div>
+</section>
+
+<!-- VALUE PROPS -->
+<section class="value-props">
+  <div class="vp-item">
+    <p class="vp-tag">Lower Risk</p>
+    <h2 class="vp-title">One Accountable Team</h2>
+    <p class="vp-body">Our supervisors and crews have worked together across years of projects and under various client network authority systems and access requirements. One accountable team means fewer interfaces, faster decisions, and no finger-pointing.</p>
+  </div>
+  <div class="vp-item">
+    <p class="vp-tag">Greater Value</p>
+    <h2 class="vp-title">In-House Engineering</h2>
+    <p class="vp-body">A chartered and registered team of civil, geotechnical and geospatial engineering resources to provide value engineering, design solutions, shop drawing development and 3D modelling before mobilisation and during delivery.</p>
+  </div>
+  <div class="vp-item">
+    <p class="vp-tag">Increased Certainty</p>
+    <h2 class="vp-title">Integrated Management</h2>
+    <p class="vp-body">An Integrated Management System built around our operations by internal staff, certified to ISO 9001, ISO 14001, and ISO 45001 and accredited under the Office of the Federal Safety Commissioner's WHS Scheme.</p>
+  </div>
+</section>
+
+<!-- CAPABILITY 1: CONCRETE STRUCTURES -->
+<section class="cap-section" id="concrete">
+  <div class="cap-inner">
+    <div class="cap-photos">
+      <img src="images/cap_concrete2.jpg" alt="Concrete pour tram street works">
+      <div class="photo-divider"></div>
+      <img src="images/cap_concrete1.jpg" alt="Bridge deck reinforcement steel fixing">
+    </div>
+    <div class="cap-text">
+      <p class="cap-number">01</p>
+      <h2 class="cap-title">Concrete Structures</h2>
+      <p class="cap-body">Coordinated in-house trades for civil preparation, steel fixing, formworking and concreting activities — from footings and slabs through to complex structural works.</p>
+      <ul class="cap-points">
+        <li>Management of set out plans and temporary works designs</li>
+        <li>Structural concrete capacity including falsework and access systems</li>
+        <li>Bridge construction and composite steel-concrete structures</li>
+        <li>Tilt-up panels and precast coordination</li>
+        <li>Shop drawing review and 3D clash detection</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITY 2: PAVEMENTS -->
+<section class="cap-section" id="pavements">
+  <div class="cap-inner flip">
+    <div class="cap-photos">
+      <img src="images/cap_pavements1.jpg" alt="Fresh asphalt road with kerb and channel">
+      <div class="photo-divider"></div>
+      <img src="images/cap_pavements2.jpg" alt="Night asphalt paving works">
+    </div>
+    <div class="cap-text">
+      <p class="cap-number">02</p>
+      <h2 class="cap-title">Pavements</h2>
+      <p class="cap-body">R2 prequalified for road construction on the DTP Victoria road network, with internal grading plant, kerb and channel resources, and total station technology to guarantee ride quality conformance.</p>
+      <ul class="cap-points">
+        <li>R2 prequalification for DTP road network works</li>
+        <li>Development of surface models and coordination of design set outs</li>
+        <li>Value engineering for pavement composition and geotechnical review</li>
+        <li>Internal grading plant and kerb and channel resources</li>
+        <li>Permits, inspections and hold points managed by AMH Civil engineers</li>
+        <li>Existing relationships with STS prequalified traffic signal contractors</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITY 3: BUILDINGS & PROCESS -->
+<section class="cap-section" id="buildings">
+  <div class="cap-inner">
+    <div class="cap-photos">
+      <img src="images/cap_buildings2.jpg" alt="Brownfield industrial building works">
+      <div class="photo-divider"></div>
+      <img src="images/cap_buildings1.jpg" alt="Food processing facility interior works">
+    </div>
+    <div class="cap-text">
+      <p class="cap-number">03</p>
+      <h2 class="cap-title">Buildings &amp; Process Infrastructure</h2>
+      <p class="cap-body">Registered with the Building and Plumbing Commission for low rise commercial construction, with integrated civil and utility installation capability and a directly employed workforce to de-risk build costs.</p>
+      <ul class="cap-points">
+        <li>BPC registered for low rise commercial construction</li>
+        <li>Brownfield planning and delivery including refurbishment and extensions</li>
+        <li>Integrated civil and utility installation with direct workforce</li>
+        <li>Management of subcontractors and supervision of high risk work</li>
+        <li>Management systems appropriate for food-grade and regulated environments</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITY 4: STORMWATER & UTILITIES -->
+<section class="cap-section" id="utilities">
+  <div class="cap-inner flip">
+    <div class="cap-photos">
+      <img src="images/cap_utilities2.jpg" alt="Conduit installation in trench">
+      <div class="photo-divider"></div>
+      <img src="images/cap_utilities1.jpg" alt="Creek crossing culvert installation">
+    </div>
+    <div class="cap-text">
+      <p class="cap-number">04</p>
+      <h2 class="cap-title">Stormwater &amp; Utilities</h2>
+      <p class="cap-body">Specialist personnel and equipment for deep trenching in tight corridors, with engineering office staff to support clash detection and route planning prior to mobilisation to mitigate downtime.</p>
+      <ul class="cap-points">
+        <li>Safe work systems for deep excavations and large diameter installation</li>
+        <li>VEDN accreditation and ESI trained personnel for power authority networks</li>
+        <li>Trained plumbing resources for connections and minor water mains</li>
+        <li>3D modelling for clash detection and conduit route planning</li>
+        <li>Bypass pumping and live network connections</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITY 5: REGIONAL -->
+<section class="cap-section" id="regional">
+  <div class="cap-inner">
+    <div class="cap-photos single">
+      <img src="images/cap_buildings3.jpg" alt="Regional process infrastructure project">
+    </div>
+    <div class="cap-text">
+      <p class="cap-number">05</p>
+      <h2 class="cap-title">Regional &amp; Remote Civil</h2>
+      <p class="cap-body">Regional based supervisors and operators to service works across Victoria, with planning and project management staff to administrate permits and logistics for remote serviced projects.</p>
+      <ul class="cap-points">
+        <li>Regional supervisors and operators based across Victoria</li>
+        <li>Key accounts with quarries and regional partners</li>
+        <li>Servicing projects from Mildura to Mallacoota</li>
+        <li>Permit management and logistics for remote projects</li>
+        <li>Self-sufficient mobilisation including accommodation and site establishment</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="images/logo.png" alt="AMH Civil">
+  <p>©2026 AMH Civil Pty Ltd &nbsp;·&nbsp; Somerton, Victoria</p>
+  <p>(03) 9305 2732</p>
+</footer>
+
+</body>
+</html>
