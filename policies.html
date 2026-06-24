@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Policies | AMH Civil</title>
+<meta name="description" content="AMH Civil company policies — our commitments to safety, quality, environment, and our people.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap');
+
+  :root {
+    --bg:      #0f1117;
+    --surface: #181c27;
+    --border:  #252b3b;
+    --red:     #d63031;
+    --blue-lt: #2d7dd2;
+    --text:    #e2e8f0;
+    --muted:   #64748b;
+    --light:   #94a3b8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); }
+
+  /* ── NAV ── */
+  #main-nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 48px;
+    background: rgba(10,14,26,0.97);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo img { height: 40px; width: auto; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a.active { color: #fff; border-bottom: 2px solid var(--red); padding-bottom: 2px; }
+  .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    padding: 64px 64px 52px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .page-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 12px;
+  }
+  .page-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.02em; line-height: 1;
+    color: #fff; margin-bottom: 16px;
+  }
+  .page-intro {
+    font-size: 0.95rem; font-weight: 300;
+    color: var(--light);
+    max-width: 620px; line-height: 1.75;
+  }
+
+  /* ── CATEGORY SECTIONS ── */
+  .policies-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 52px 48px 72px;
+  }
+
+  .policy-category {
+    margin-bottom: 52px;
+  }
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .category-icon {
+    width: 36px; height: 36px;
+    border-radius: 4px;
+    background: var(--red);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .category-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: #fff;
+  }
+
+  /* Policy card grid */
+  .policy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .policy-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .policy-card:hover {
+    border-color: var(--red);
+    transform: translateY(-2px);
+  }
+  .policy-code {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .policy-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.03em;
+    color: #fff; line-height: 1.2;
+    flex: 1;
+  }
+  .policy-commitment {
+    font-size: 0.8rem;
+    color: var(--light);
+    line-height: 1.55;
+  }
+  .policy-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--light);
+    padding: 6px 14px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transition: border-color 0.15s, color 0.15s;
+    align-self: flex-start;
+  }
+  .policy-download:hover {
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080a10;
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  footer img { height: 28px; width: auto; opacity: 0.6; }
+  footer p { font-size: 0.75rem; color: var(--muted); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .policy-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 820px) {
+    #main-nav { padding: 14px 20px; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; right: 0; background: rgba(10,14,26,0.98); padding: 20px 24px; gap: 20px; }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: flex; }
+    .page-hero { padding: 40px 24px 32px; }
+    .policies-wrap { padding: 36px 24px 52px; }
+    footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 520px) {
+    .policy-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="AMH Civil">
+  </a>
+  <div class="nav-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="capability.html">Capability</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="policies.html" class="active">Policies</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <p class="page-eyebrow">Integrated Management System</p>
+  <h1 class="page-title">Policies</h1>
+  <p class="page-intro">AMH Civil's policy framework sets out our commitments to our people, our clients, and the communities in which we work. All policies are signed by the General Manager and reviewed regularly as part of our ISO-certified Integrated Management System.</p>
+</div>
+
+<div class="policies-wrap">
+
+  <!-- SAFETY & HEALTH -->
+  <div class="policy-category">
+    <div class="category-header">
+      <div class="category-icon">🦺</div>
+      <span class="category-title">Safety &amp; Health</span>
+    </div>
+    <div class="policy-grid">
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-WHS</span>
+        <span class="policy-name">Health &amp; Safety Policy</span>
+        <span class="policy-commitment">Providing a workplace where activities are carried out safely through the continuous improvement of safety management, certified to ISO 45001.</span>
+        <a class="policy-download" href="policies/AMH-POL-WHS_Health_Safety_Policy.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-FFW</span>
+        <span class="policy-name">Fitness for Work Policy</span>
+        <span class="policy-commitment">Ensuring employees are healthy and safe from hazards arising from fatigue, alcohol or drugs, with proactive support and rehabilitation measures.</span>
+        <a class="policy-download" href="policies/AMH-POL-FFW_Fitness_For_Work_Policy.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-RTW</span>
+        <span class="policy-name">Return to Work Policy</span>
+        <span class="policy-commitment">Supporting injured workers to recover and return to work as soon as reasonably possible, in compliance with the Workplace Injury Rehabilitation and Compensation Act 2013.</span>
+        <a class="policy-download" href="policies/AMH-POL-RTW_Return_to_Work_Policy.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-TRA</span>
+        <span class="policy-name">Traffic Management Policy</span>
+        <span class="policy-commitment">Ensuring the safety of all road users, workers, and pedestrians through compliant and effective temporary traffic management practices aligned with the AustRoads AGTTM.</span>
+        <a class="policy-download" href="policies/AMH-POL-TRA_Traffic_Management_Policy.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- QUALITY & ENVIRONMENT -->
+  <div class="policy-category">
+    <div class="category-header">
+      <div class="category-icon">✅</div>
+      <span class="category-title">Quality &amp; Environment</span>
+    </div>
+    <div class="policy-grid">
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-QUA</span>
+        <span class="policy-name">Quality Policy</span>
+        <span class="policy-commitment">Committed to the continuous improvement of quality management and outcomes, with a Quality Management System certified to ISO 9001.</span>
+        <a class="policy-download" href="policies/AMH-POL-QUA_Quality_Policy.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-ENV</span>
+        <span class="policy-name">Environment &amp; Sustainability Policy</span>
+        <span class="policy-commitment">Minimising adverse environmental impacts and committing to continuous improvement of environmental management, certified to ISO 14001.</span>
+        <a class="policy-download" href="policies/AMH-POL-ENV_Environmental_Policy.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PEOPLE & WORKPLACE -->
+  <div class="policy-category">
+    <div class="category-header">
+      <div class="category-icon">👥</div>
+      <span class="category-title">People &amp; Workplace</span>
+    </div>
+    <div class="policy-grid">
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-COC</span>
+        <span class="policy-name">Code of Conduct</span>
+        <span class="policy-commitment">Conducting business fairly, communicating honestly, and maintaining a positive, no-blame reporting culture across the organisation.</span>
+        <a class="policy-download" href="policies/AMH-POL-COC_Code_of_Conduct.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-DIV</span>
+        <span class="policy-name">Diversity &amp; Equal Opportunity Policy</span>
+        <span class="policy-commitment">Committed to diversity, social inclusion, and equal opportunity — making decisions that are fair, reasonable, and free from discrimination or bias.</span>
+        <a class="policy-download" href="policies/AMH-POL-DIV_Diversity_Equal_Opportunity.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-IR</span>
+        <span class="policy-name">Industrial Relations Policy</span>
+        <span class="policy-commitment">Creating a workplace where employees feel safe and supported, workplace rights are respected, and conduct is ethical, lawful, and professional.</span>
+        <a class="policy-download" href="policies/AMH-POL-IR_Industrial_Relations.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-SUP</span>
+        <span class="policy-name">Employee Support Policy</span>
+        <span class="policy-commitment">Providing confidential direction to professional support services for staff and their immediate family members experiencing personal or work-related issues.</span>
+        <a class="policy-download" href="policies/AMH-POL-SUP_Employee_Support_Policy.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GOVERNANCE & COMPLIANCE -->
+  <div class="policy-category">
+    <div class="category-header">
+      <div class="category-icon">📋</div>
+      <span class="category-title">Governance &amp; Compliance</span>
+    </div>
+    <div class="policy-grid">
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-SLA</span>
+        <span class="policy-name">Modern Slavery Policy</span>
+        <span class="policy-commitment">Committed to acting ethically in all business dealings and preventing modern slavery and human trafficking across our business and supply chains.</span>
+        <a class="policy-download" href="policies/AMH-POL-SLA_Modern_Slavery_Policy.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-COR</span>
+        <span class="policy-name">Chain of Responsibility Policy</span>
+        <span class="policy-commitment">Ensuring business operations comply with Chain of Responsibility legislation, promoting public safety in transport activities across the supply chain.</span>
+        <a class="policy-download" href="policies/AMH-POL-COR_Chain_of_Responsibility.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-CSE</span>
+        <span class="policy-name">Community &amp; Stakeholder Engagement Policy</span>
+        <span class="policy-commitment">Actively engaging with stakeholders, positively benefiting the community, and mitigating disruption and negative impacts as far as reasonably practicable.</span>
+        <a class="policy-download" href="policies/AMH-POL-CSE_Community_Stakeholder_Engagement.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-PRMP</span>
+        <span class="policy-name">Partnering &amp; Relationship Management Policy</span>
+        <span class="policy-commitment">Pursuing collaborative approaches and embracing partnering relationships built on shared vision, transparency, and mutual benefit.</span>
+        <a class="policy-download" href="policies/AMH-POL-PRMP_Partnering_Relationship.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DATA & TECHNOLOGY -->
+  <div class="policy-category">
+    <div class="category-header">
+      <div class="category-icon">🔒</div>
+      <span class="category-title">Data &amp; Technology</span>
+    </div>
+    <div class="policy-grid">
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-DAT</span>
+        <span class="policy-name">Data Security Policy</span>
+        <span class="policy-commitment">Building systems and infrastructure to ensure the security and integrity of internal data, in compliance with the Cyber Security Act 2024 and Essential Eight framework.</span>
+        <a class="policy-download" href="policies/AMH-POL-DAT_Data_Security_Policy.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-PRI</span>
+        <span class="policy-name">Privacy Policy</span>
+        <span class="policy-commitment">Respecting and maintaining the right to privacy of our people and stakeholders, managing data in accordance with the Privacy Act 1988 and Privacy and Data Protection Act 2014.</span>
+        <a class="policy-download" href="policies/AMH-POL-PRI_Privacy_Policy.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-TFU</span>
+        <span class="policy-name">Fair Use of Technology Policy</span>
+        <span class="policy-commitment">Ensuring appropriate and safe use of company technology resources in a fair and reasonable way that does not compromise the security or safety of our people or the business.</span>
+        <a class="policy-download" href="policies/AMH-POL-TFU_Technology_Fair_Use_Policy.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-MOB</span>
+        <span class="policy-name">Mobile Phone Use Policy</span>
+        <span class="policy-commitment">Permitting controlled use of mobile phones on site with clear conditions to ensure workers remain safe, focused, and respectful of colleagues and the community.</span>
+        <a class="policy-download" href="policies/AMH-POL-MOB_Mobile_Phone_Use.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+      <div class="policy-card">
+        <span class="policy-code">AMH-POL-RPA</span>
+        <span class="policy-name">Drone Use Policy</span>
+        <span class="policy-commitment">Ensuring the safe and legal use of Remotely Piloted Aircraft in compliance with CASA regulations, with authorised and trained operators and site risk assessments.</span>
+        <a class="policy-download" href="policies/AMH-POL-RPA_Drone_Use_Policy.pdf" target="_blank">↓ Download PDF</a>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /.policies-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <img src="images/logo.png" alt="AMH Civil">
+  <p>©2026 AMH Civil Pty Ltd &nbsp;·&nbsp; Somerton, Victoria</p>
+  <p>(03) 9305 2732</p>
+</footer>
+
+</body>
+</html>
